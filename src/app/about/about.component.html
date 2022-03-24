@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <h1 class="text-danger text-center">Welcome {{info.nom}}</h1>
+    <ul>
+        <li>Name : {{info.nom}}</li>
+        <li>Email : {{info.email}}</li>
+        <li>Tel : {{info.tel}}</li>
+    </ul>
+    <div>
+        <div class="row">
+            <div class="col-md-6 col-lg-8">
+                <input type="text" [(ngModel)]="comment.message" class="form-control border-1 border-dark" placeholder="Enter Your Message ..."></div>
+            <div class="col-md-3 col-lg-2">
+                <button (click)="addComment()" [disabled]="newComment" class="btn btn-danger border-1 border-dark col-12 me-2">Add Comment</button>
+            </div>
+            <div class="col-md-3 col-lg-2">
+                <button (click)="deleteAllComments()" [disabled]="newComment" class="btn btn-dark border-1 border-dark col-12">Delete All Comments</button>
+            </div>
+        </div>
+    </div>
+    <h3 class="mt-4">List of Comments :</h3>
+    <div *ngIf="comments.length>0">
+        <table class="table table-bordered border-1 border-dark">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of comments">
+                    <td>{{item.id}}</td>
+                    <td>{{item.message}}</td>
+                    <td>
+                        <button class="btn btn-danger border-1 border-dark me-2" (click)="deleteMessage(item)">Delete</button>
+                        <button class="btn btn-success border-1 border-dark">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="comments.length==0">
+        <p>List of comments is empty</p>
+    </div>
+</div>
